@@ -1,4 +1,9 @@
 import os
+import sys
+
+# Add the 'src' directory to the Python path to ensure modules are found
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 
