@@ -1,9 +1,5 @@
 import os
 import sys
-
-# Add the 'src' directory to the Python path to ensure modules are found
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
 
@@ -44,9 +40,9 @@ class SoccerGMApp(MDApp):
     def on_start(self):
         """Lifecycle method that is called when the app starts."""
         # --- Database Setup ---
+        # With the new flat structure, the path is simpler.
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.join(script_dir, '..')
-        db_file = os.path.join(project_root, 'data', 'soccer_gm.db')
+        db_file = os.path.join(script_dir, 'data', 'soccer_gm.db')
 
         self.db_conn = create_connection(db_file)
         if self.db_conn:
