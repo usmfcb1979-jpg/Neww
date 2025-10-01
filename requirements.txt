@@ -1,0 +1,15 @@
+certifi
+charset-normalizer==3.4.3
+docutils==0.22.2
+filetype==1.2.0
+greenlet==3.2.3
+idna==3.10
+Kivy==2.3.1
+Kivy-Garden==0.1.5
+kivymd==1.2.0
+pillow==11.3.0
+pyee==13.0.0
+Pygments==2.19.2
+requests==2.32.5
+typing_extensions==4.14.1
+urllib3==2.5.0
