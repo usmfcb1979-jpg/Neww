@@ -1,13 +1,13 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.label import MDLabel
 
-class SquadPageScreen(MDScreen):
+class LoadGameScreen(MDScreen):
     def __init__(self, **kwargs):
-        super(SquadPageScreen, self).__init__(**kwargs)
-        self.name = 'squad_page'
+        super(LoadGameScreen, self).__init__(**kwargs)
+        self.name = 'load_game'
 
         label = MDLabel(
-            text="Squad Page",
+            text="Load Game (Placeholder)",
             halign="center",
             font_style="H4"
         )

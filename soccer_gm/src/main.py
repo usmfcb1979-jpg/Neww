@@ -10,7 +10,8 @@ from simulation import setup_sample_league
 # UI Imports
 from ui.main_menu import MainMenuScreen
 from ui.home_dashboard import HomeDashboardScreen
-from ui.squad_page import SquadPageScreen
+from ui.load_game_screen import LoadGameScreen
+from ui.settings_screen import SettingsScreen
 
 class SoccerGMApp(MDApp):
     """Main application class for Soccer GM."""
@@ -26,10 +27,11 @@ class SoccerGMApp(MDApp):
 
         self.screen_manager = ScreenManager()
 
-        # Add the screens without passing the app instance
+        # Add all the screens
         self.screen_manager.add_widget(MainMenuScreen(name='main_menu'))
         self.screen_manager.add_widget(HomeDashboardScreen(name='home_dashboard'))
-        self.screen_manager.add_widget(SquadPageScreen(name='squad_page'))
+        self.screen_manager.add_widget(LoadGameScreen(name='load_game'))
+        self.screen_manager.add_widget(SettingsScreen(name='settings'))
 
         self.screen_manager.current = 'main_menu'
         return self.screen_manager

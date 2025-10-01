@@ -1,57 +1,67 @@
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.button import MDRaisedButton, MDIconButton
 from kivymd.uix.label import MDLabel
+from kivymd.uix.card import MDCard
 
 class MainMenuScreen(MDScreen):
     def __init__(self, **kwargs):
         super(MainMenuScreen, self).__init__(**kwargs)
         self.name = 'main_menu'
 
-        layout = MDBoxLayout(
+        # Main layout container
+        main_layout = MDBoxLayout(
             orientation='vertical',
-            spacing='15dp',
-            padding='15dp',
+            spacing='20dp',
+            padding='20dp',
             adaptive_size=True,
             pos_hint={'center_x': 0.5, 'center_y': 0.5}
         )
 
-        title = MDLabel(
-            text="Soccer GM",
-            font_style="H2",
-            halign="center",
-            size_hint_y=None,
-            height=self.height
+        # App Title with an icon
+        title_layout = MDBoxLayout(orientation='horizontal', adaptive_height=True, spacing='10dp', pos_hint={'center_x': 0.5})
+        icon = MDIconButton(icon='soccer', theme_icon_color="Custom", icon_color=MDApp.get_running_app().theme_cls.primary_color)
+        title = MDLabel(text="Soccer GM", font_style="H2", halign="center", adaptive_height=True)
+        title_layout.add_widget(icon)
+        title_layout.add_widget(title)
+
+        # Card to hold the menu buttons
+        menu_card = MDCard(
+            orientation='vertical',
+            padding="20dp",
+            spacing="10dp",
+            size_hint=(1, None),
+            height="200dp",
+            elevation=2
         )
 
         new_career_button = MDRaisedButton(
             text="New Career",
-            size_hint=(1, None),
-            height="48dp",
-            on_press=self.start_new_career
+            on_press=self.start_new_career,
+            size_hint_x=1
         )
 
         load_game_button = MDRaisedButton(
             text="Load Game",
-            size_hint=(1, None),
-            height="48dp",
-            on_press=self.load_game
+            on_press=self.load_game,
+            size_hint_x=1
         )
 
         settings_button = MDRaisedButton(
             text="Settings",
-            size_hint=(1, None),
-            height="48dp",
-            on_press=self.open_settings
+            on_press=self.open_settings,
+            size_hint_x=1
         )
 
-        layout.add_widget(title)
-        layout.add_widget(new_career_button)
-        layout.add_widget(load_game_button)
-        layout.add_widget(settings_button)
+        menu_card.add_widget(new_career_button)
+        menu_card.add_widget(load_game_button)
+        menu_card.add_widget(settings_button)
 
-        self.add_widget(layout)
+        main_layout.add_widget(title_layout)
+        main_layout.add_widget(menu_card)
+
+        self.add_widget(main_layout)
 
     def start_new_career(self, instance):
         """Calls the main app's method to start a new game."""
@@ -59,9 +69,9 @@ class MainMenuScreen(MDScreen):
         app.start_new_game()
 
     def load_game(self, instance):
-        print("Loading a saved game...")
-        # Logic to load game will be added here
+        print("Load Game button pressed.")
+        self.manager.current = 'load_game'
 
     def open_settings(self, instance):
-        print("Opening settings...")
-        # Logic to open settings screen will be added here
+        print("Settings button pressed.")
+        self.manager.current = 'settings'
