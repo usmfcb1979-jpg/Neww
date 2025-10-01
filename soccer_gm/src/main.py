@@ -26,10 +26,10 @@ class SoccerGMApp(MDApp):
 
         self.screen_manager = ScreenManager()
 
-        # Pass a reference of the app to the screens
-        self.screen_manager.add_widget(MainMenuScreen(app=self, name='main_menu'))
-        self.screen_manager.add_widget(HomeDashboardScreen(app=self, name='home_dashboard'))
-        self.screen_manager.add_widget(SquadPageScreen(app=self, name='squad_page'))
+        # Add the screens without passing the app instance
+        self.screen_manager.add_widget(MainMenuScreen(name='main_menu'))
+        self.screen_manager.add_widget(HomeDashboardScreen(name='home_dashboard'))
+        self.screen_manager.add_widget(SquadPageScreen(name='squad_page'))
 
         self.screen_manager.current = 'main_menu'
         return self.screen_manager

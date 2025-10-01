@@ -1,12 +1,12 @@
+from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.label import MDLabel
 
 class MainMenuScreen(MDScreen):
-    def __init__(self, app, **kwargs):
+    def __init__(self, **kwargs):
         super(MainMenuScreen, self).__init__(**kwargs)
-        self.app = app  # Store a reference to the main app
         self.name = 'main_menu'
 
         layout = MDBoxLayout(
@@ -55,7 +55,8 @@ class MainMenuScreen(MDScreen):
 
     def start_new_career(self, instance):
         """Calls the main app's method to start a new game."""
-        self.app.start_new_game()
+        app = MDApp.get_running_app()
+        app.start_new_game()
 
     def load_game(self, instance):
         print("Loading a saved game...")

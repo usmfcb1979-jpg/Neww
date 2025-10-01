@@ -1,11 +1,11 @@
+from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.label import MDLabel
 from kivymd.uix.boxlayout import MDBoxLayout
 
 class HomeDashboardScreen(MDScreen):
-    def __init__(self, app, **kwargs):
+    def __init__(self, **kwargs):
         super(HomeDashboardScreen, self).__init__(**kwargs)
-        self.app = app
         self.name = 'home_dashboard'
 
         self.layout = MDBoxLayout(orientation='vertical', padding='20dp', spacing='10dp')
@@ -26,8 +26,9 @@ class HomeDashboardScreen(MDScreen):
 
     def on_enter(self):
         """Called when the screen is entered. Updates the display with game data."""
-        if self.app.league:
-            league = self.app.league
+        app = MDApp.get_running_app()
+        if app and app.league:
+            league = app.league
             self.league_info_label.text = f"Welcome to the '{league.name}'!\n" \
                                           f"There are {len(league.teams)} teams competing."
         else:
